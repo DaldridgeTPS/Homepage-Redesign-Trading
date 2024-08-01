@@ -1,0 +1,153 @@
+<style>
+	.full-width-force {
+		width: 100% !important;
+		max-width: 1200px !important;
+		margin: auto !important;
+	}
+	section.homepage-hero {
+		background: #ffffff;
+		padding: 0 10px;
+	}
+
+	section.homepage-hero .homepage-hero-container {
+		max-width: 1200px;
+		margin: 20px auto;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	section.homepage-hero .homepage-hero-container .centered-content {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		margin: auto;
+		text-align: center;
+		position: absolute;
+	}
+
+	section.homepage-hero .homepage-hero-container .centered-content h2 {
+		background: #ffffff;
+		width: fit-content;
+		margin: 0 auto;
+		font-family: DIN Condensed, DIN Condensed Bold, system-ui;
+		font-size: 32px;
+		text-transform: uppercase;
+		padding: 10px 10px 2px 10px;
+		border-radius: 4px;
+	}
+
+	section.homepage-hero .homepage-hero-container .centered-content h2:nth-child(2) {
+		margin-top: -10px;
+	}
+
+	section.homepage-hero .homepage-hero-container .centered-content a.category-link {
+		background: #ffffff;
+		color: #000000;
+		width: 160px;
+		margin: auto;
+		padding: 8px;
+		margin-top: 15px;
+		box-sizing: border-box;
+		border-radius: 4px;
+		border: solid 1px #ffffff;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.15s;
+	}
+
+	section.homepage-hero .homepage-hero-container picture {
+		width: 100%;
+		border-radius: 4px;
+	}
+
+	section.homepage-hero .homepage-hero-container picture img {
+		width: 100%;
+		border-radius: 4px;
+	}
+
+	section.homepage-hero .homepage-hero-container a.supplier-button {
+		position: absolute;
+		background: #ffffff;
+		color: #000000;
+		text-align: center;
+		left: 5%;
+		width: 90%;
+		bottom: 20px;
+		box-sizing: border-box;
+		border-radius: 4px;
+		padding: 8px;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		text-transform: uppercase;
+		text-decoration: none;
+		border: solid 1px #ffffff;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.15s;
+	}
+
+	@media only screen and (min-width: 768px) {
+		section.homepage-hero .homepage-hero-container .centered-content {
+			margin-top: -4%;
+		}
+
+		section.homepage-hero .homepage-hero-container .centered-content a.category-link:hover {
+			background: #000000;
+			color: #ffffff;
+		}
+
+		section.homepage-hero .homepage-hero-container a.supplier-button {
+			left: 35%;
+			width: 30%;
+		}
+
+		section.homepage-hero .homepage-hero-container a.supplier-button:hover {
+			background: #000000;
+			color: #ffffff;
+		}
+	}
+</style>
+
+<section class="homepage-hero">
+	<div class="homepage-hero-container">
+		<div class="centered-content">
+			<h2>We are</h2>
+			<h2>The Perfume Shop</h2>
+			<a class="category-link" href="">Shop Womens</a>
+			<a class="category-link" href="">Shop Mens</a>
+		</div>
+		<a class="supplier-button" href="">Shop Hugo Boss</a>
+		<picture>
+			<!-- Trading - Desktop Image -->
+			<source
+				srcset="
+					https://media.theperfumeshop.com/medias/sys_master/images/hc7/h80/9152354287646/COT-3430-2403-2548-30_HBO_UK_THE_PERFUME_SHOP_SOCCER_24_TRPH_KV_4_DISPLAY_1200x320_B/COT-3430-2403-2548-30-HBO-UK-THE-PERFUME-SHOP-SOCCER-24-TRPH-KV-4-DISPLAY-1200x320-B.jpg
+				"
+				media="(min-width: 1023px)"
+			/>
+			<!-- Trading - Tablet Image -->
+			<source
+				srcset="
+					https://media.theperfumeshop.com/medias/sys_master/images/h70/h80/9152354254878/COT-3430-2403-2548-31_HBO_UK_THE_PERFUME_SHOP_SOCCER_24_TRPH_KV_4_DISPLAY_1023x320_B/COT-3430-2403-2548-31-HBO-UK-THE-PERFUME-SHOP-SOCCER-24-TRPH-KV-4-DISPLAY-1023x320-B.jpg
+				"
+				media="(min-width: 768px)"
+			/>
+			<!-- Trading - Mobile Image -->
+			<img
+				src="https://media.theperfumeshop.com/medias/sys_master/images/h1a/h80/9152354222110/COT-3430-2403-2548-33_HBO_UK_THE_PERFUME_SHOP_SOCCER_24_TRPH_KV_4_DISPLAY_400x466/COT-3430-2403-2548-33-HBO-UK-THE-PERFUME-SHOP-SOCCER-24-TRPH-KV-4-DISPLAY-400x466.jpg"
+				alt="MDN"
+			/>
+		</picture>
+	</div>
+</section>
+
+<script>
+	document.querySelector('section.homepage-hero').parentNode.parentNode.parentNode.classList.add('full-width-force');
+</script>

@@ -1,0 +1,261 @@
+<style>
+	.full-width-force {
+		width: 100% !important;
+		max-width: 1200px !important;
+		margin: auto !important;
+	}
+
+	section.tabbed-carousel {
+		background: #ffffff;
+		padding: 0 10px;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container {
+		background: #ffffff;
+		border-radius: 4px;
+		max-width: 1200px;
+		margin: 20px auto;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .tabbed-titles {
+		margin: auto;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .tabbed-titles h2 {
+		font-family: DIN Condensed Bold, 'DIN Condensed', sans-serif;
+		font-size: 32px;
+		text-transform: uppercase;
+		color: #000000;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+		display: inline-block;
+		margin: auto 10px;
+		cursor: pointer;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .tabbed-titles h2.active {
+		border-bottom: solid 4px #e00034;
+		border-radius: 4px;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider {
+		margin: 30px auto auto auto;
+		display: flex;
+		gap: 10px;
+		padding: 0 0 10px 0;
+		overflow-x: auto;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider#secondSlider {
+		display: none;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider a {
+		text-align: center;
+		margin: auto;
+		text-decoration: none;
+		min-width: 240px;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider a .img-container {
+		border-radius: 50%;
+		height: 110px;
+		width: 110px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: auto;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider a .img-container img {
+		height: 100%;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider p.brand-name {
+		color: #000000;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 13px;
+		font-weight: 300;
+		text-transform: uppercase;
+		letter-spacing: 3px;
+		word-break: break-word;
+		line-height: 19.5px;
+		padding: 0 0 4px 0;
+		margin: 0;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider p.range-name {
+		color: #000000;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		text-transform: uppercase;
+		overflow-wrap: break-word;
+		line-height: 24px;
+		padding: 0 0 6px 0;
+		margin: 0;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider p.type-size {
+		color: #000000;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 13px;
+		font-weight: 400;
+		overflow-wrap: break-word;
+		line-height: 20px;
+		padding: 0 0 0 0;
+		margin: 0;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider p.only-price {
+		color: #000000;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		text-transform: uppercase;
+		margin: 5px 0 0 0;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider p.save-price {
+		color: #e00034;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		margin: 2px 0 0 0;
+	}
+
+	section.tabbed-carousel .tabbed-carousel-container .slider p.rrp-price {
+		color: #8b8b8b;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 12px;
+		text-transform: uppercase;
+		margin: 4px 0 0 0;
+	}
+
+	@media only screen and (min-width: 768px) {
+		section.tabbed-carousel .tabbed-carousel-container .slider a {
+			min-width: auto;
+		}
+	}
+</style>
+
+<section class="tabbed-carousel">
+	<div class="tabbed-carousel-container">
+		<div class="tabbed-titles">
+			<!-- Trading - Update Carousel Names-->
+			<h2 id="firstTabbedTitle" class="active">Offers</h2>
+			<h2 id="secondTabbedTitle">Bestsllers</h2>
+		</div>
+		<div class="slider" id="firstSlider"></div>
+		<div class="slider" id="secondSlider"></div>
+	</div>
+</section>
+
+<script>
+	document.querySelector('section.tabbed-carousel').parentNode.parentNode.parentNode.classList.add('full-width-force');
+
+	var firstTabbedTitle = document.querySelector('#firstTabbedTitle');
+	var secondTabbedTitle = document.querySelector('#secondTabbedTitle');
+	var firstSlider = document.querySelector('#firstSlider');
+	var secondSlider = document.querySelector('#secondSlider');
+
+	firstTabbedTitle.addEventListener('click', toggleTabbedCarousel);
+	secondTabbedTitle.addEventListener('click', toggleTabbedCarousel);
+
+	function toggleTabbedCarousel() {
+		if (firstTabbedTitle.classList.contains('active')) {
+			firstTabbedTitle.classList.remove('active');
+			secondTabbedTitle.classList.add('active');
+			firstSlider.style.display = 'none';
+			secondSlider.style.display = 'flex';
+		} else {
+			firstTabbedTitle.classList.add('active');
+			secondTabbedTitle.classList.remove('active');
+			firstSlider.style.display = 'flex';
+			secondSlider.style.display = 'none';
+		}
+	}
+
+	// Define the Variables
+	var xhrLang = localStorage.getItem('spartacus⚿⚿language').replace(/["]+/g, '');
+	var xhrCurrency = localStorage.getItem('spartacus⚿⚿currency').replace(/["]+/g, '');
+
+	// Define the URL base
+	// var apiUrl = 'https://api.theperfumeshop.com/api/v2/';
+	var apiUrl = 'https://api.cmb8j9fjhz-emea3aswa1-s1-public.model-t.cc.commerce.ondemand.com/api/v2/';
+
+	// Derive the channel
+	var xhrChannel = xhrCurrency === 'GBP' ? 'tpsgb' : 'tpsie';
+
+	// Define the list of SKUs
+	// Trading - Update SKUs
+	var firstSliderSkus = [1161975, 1100957, 1151505, 1160159, 1119361, 1066406];
+	var secondSliderSkus = [1193036, 1154814, 1135805, 1133354, 1022219];
+
+	// Function to get product data for a given SKU
+	async function get_product_data(sku) {
+		try {
+			// Build the URL
+			var xhrProductUrl = `${apiUrl}${xhrChannel}/products/${sku}?fields=FULL&lang=${xhrLang}&curr=${xhrCurrency}`;
+
+			// Define the request
+			var request = new Request(xhrProductUrl, {
+				method: 'GET',
+			});
+
+			// Send the request
+			var response = await fetch(request);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+
+			// Parse the JSON response
+			var productResponse = await response.json();
+
+			// Extract relevant data
+			var productImage = productResponse.listImage.url;
+			var productUrl = productResponse.url;
+			var productBrandName = productResponse.masterBrand.name;
+			var productRangeName = productResponse.rangeName;
+			var productType = productResponse.name;
+			var productSize = productResponse.baseOptions[0].selected.variantOptionQualifiers[0].value;
+			var productPrice = productResponse.price.formattedValue;
+			var productSavePrice = productResponse.price.savePrice;
+			var productOldValue = productResponse.price.formattedOldValue;
+			var stockLevelStatus = productResponse.stock.stockLevelStatus;
+
+			if (stockLevelStatus == 'inStock') {
+				var productHTML = `<a href="${productUrl}">
+            <div class="img-container">
+                <img src="https://api.cmb8j9fjhz-emea3aswa1-s1-public.model-t.cc.commerce.ondemand.com${productImage}" alt="${productResponse.masterBrand.name} ${productResponse.rangeName}" />
+            </div>
+			<p class="brand-name">${productBrandName}</p>
+			<p class="range-name">${productRangeName}</p>
+			<p class="type-size">${productType} - ${productSize}</p>
+            <p class="only-price">${productSavePrice ? 'Only' : ''} ${productPrice}</p>
+            <p class="save-price">${productSavePrice ? 'Save ' + productSavePrice : ''}</p>
+            <p class="rrp-price">${productSavePrice ? 'RRP ' + productOldValue : ''}</p>
+        </a>`;
+			} else {
+				var productHTML = '';
+			}
+
+			return productHTML;
+		} catch (error) {
+			return `Error fetching data for SKU ${sku}: ${error.message}`;
+		}
+	}
+
+	// Get product data for each SKU using forEach loop
+	firstSliderSkus.forEach(async (sku) => {
+		var productHTML = await get_product_data(sku);
+		firstSlider.innerHTML += productHTML;
+	});
+
+	secondSliderSkus.forEach(async (sku) => {
+		var productHTML = await get_product_data(sku);
+		secondSlider.innerHTML += productHTML;
+	});
+</script>

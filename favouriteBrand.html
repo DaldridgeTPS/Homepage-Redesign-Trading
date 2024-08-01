@@ -1,0 +1,233 @@
+<style>
+	.full-width-force {
+		width: 100% !important;
+		max-width: 1200px !important;
+		margin: auto !important;
+	}
+
+	section.favourite-brand {
+		background: #ffffff;
+		padding: 0 10px;
+	}
+
+	section.favourite-brand .favourite-brand-container {
+		background: #f5f5f5;
+		border-radius: 4px;
+		max-width: 1200px;
+		margin: 20px auto;
+	}
+
+	section.favourite-brand .visual img {
+		display: block;
+		width: 100%;
+		border-radius: 4px 4px 0 0;
+	}
+
+	section.favourite-brand .content {
+		padding: 20px;
+	}
+
+	@media only screen and (min-width: 768px) {
+		section.favourite-brand .favourite-brand-container {
+			padding: 0;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		section.favourite-brand .content {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+	}
+
+	section.favourite-brand h2 {
+		font-family: DIN Condensed Bold, 'DIN Condensed', sans-serif;
+		font-size: 32px;
+		text-transform: uppercase;
+		color: #000000;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+
+	section.favourite-brand p {
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		color: #000000;
+		text-align: center;
+		margin: 10px 0 0 0;
+		padding: 0;
+	}
+
+	section.favourite-brand a.button {
+		display: block;
+		background: #000000;
+		width: fit-content;
+		padding: 10px 50px;
+		margin: 20px auto 0 auto;
+		border-radius: 4px;
+		text-decoration: none;
+		color: #ffffff;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		text-transform: uppercase;
+		cursor: pointer;
+		border: solid 1px #000000;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.15s;
+	}
+
+	section.favourite-brand a.button:hover {
+		background: #f5f5f5;
+		color: #000000;
+		cursor: pointer;
+	}
+
+	section.favourite-brand a.sub-link {
+		text-align: center;
+		margin: 20px auto 0 auto;
+		text-decoration: underline;
+		color: #000000;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		font-weight: bold;
+		cursor: pointer;
+	}
+</style>
+
+<section class="favourite-brand">
+	<div class="favourite-brand-container"></div>
+</section>
+
+<script>
+	document.querySelector('section.favourite-brand').parentNode.parentNode.parentNode.classList.add('full-width-force');
+
+	// Send the request and handle the response
+	async function getFavouriteBrand() {
+		// Define the Variables
+		var xhrLang = localStorage.getItem('spartacus⚿⚿language').replace(/["]+/g, '');
+		var xhrCurrency = localStorage.getItem('spartacus⚿⚿currency').replace(/["]+/g, '');
+		var xhrToken = JSON.parse(localStorage.getItem('spartacus⚿⚿auth')).token.access_token;
+
+		// Define the URL
+		var apiUrl = 'https://api.cmb8j9fjhz-emea3aswa1-s1-public.model-t.cc.commerce.ondemand.com/api/v2/';
+
+		// Derive the channel
+		var xhrChannel = xhrCurrency === 'GBP' ? 'tpsgb' : 'tpsie';
+
+		// Build URL
+		var favouriteBrandUrl = `${apiUrl}${xhrChannel}/users/current/offers?lang=${xhrLang}&curr=${xhrCurrency}`;
+
+		// Define the headers
+		var headers = new Headers();
+		headers.append('Authorization', `Bearer ${xhrToken}`);
+
+		// Define the request
+		var request = new Request(favouriteBrandUrl, {
+			method: 'GET',
+			headers: headers,
+		});
+
+		try {
+			var response = await fetch(request);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			var getFavouriteBrandResponse = await response.json();
+			console.log(getFavouriteBrandResponse.offers[0].categoryOffers[0]);
+			console.log('Brand Name: ' + getFavouriteBrandResponse.offers[0].categoryOffers[0].favouriteMasterBrand.name);
+			var dateString = getFavouriteBrandResponse.offers[0].categoryOffers[0].validTo.split('T')[0];
+			var [year, month, day] = dateString.split('-');
+			console.log('Expires on: ' + [year, month, day]);
+			console.log('Brand URL: ' + getFavouriteBrandResponse.offers[0].categoryOffers[0].favouriteMasterBrand.brandUrl);
+
+			var favouriteBrandName = getFavouriteBrandResponse.offers[0].categoryOffers[0].favouriteMasterBrand.name;
+			var favouriteBrandImage;
+
+			switch (favouriteBrandName) {
+				case 'DIOR':
+					favouriteBrandImage = 'https://media.theperfumeshop.com/pws/client/images/website/2023/roi-homepage-redesign/dior-favourite-brand.jpg';
+					break;
+				case 'CHANEL':
+					favouriteBrandImage = 'https://media.theperfumeshop.com/pws/client/images/website/2023/roi-homepage-redesign/chanel-favourite-brand.jpg';
+					break;
+				case 'Paco Rabanne':
+					favouriteBrandImage = 'https://media.theperfumeshop.com/pws/client/images/website/2023/roi-homepage-redesign/paco-rabanne-favourite-brand.jpg';
+					break;
+				case 'Mugler':
+					favouriteBrandImage = 'https://media.theperfumeshop.com/pws/client/images/website/2023/roi-homepage-redesign/mugler-favourite-brand.jpg';
+					break;
+				case 'Armani':
+					favouriteBrandImage = 'https://media.theperfumeshop.com/pws/client/images/website/2023/roi-homepage-redesign/armani-favourite-brand.jpg';
+					break;
+				default:
+					// Trading - Favourite Brand Image
+					favouriteBrandImage = 'https://media.theperfumeshop.com/pws/client/images/website/2023/roi-homepage-redesign/generic-favourite-brand.jpg';
+			}
+
+			var dateString = getFavouriteBrandResponse.offers[0].categoryOffers[0].validTo.split('T')[0];
+			var [year, month, day] = dateString.split('-');
+
+			favouriteBrandContent = `
+        <div class="visual">
+			<img src="${favouriteBrandImage}" alt="" />
+		</div>
+		<div class="content">
+			<h2>10% Off ${favouriteBrandName}</h2>
+			<p>
+				You previously selected <a class="sub-link" href="${getFavouriteBrandResponse.offers[0].categoryOffers[0].favouriteMasterBrand.brandUrl}">${favouriteBrandName}</a> as your Favourite Brand, which means you get 10% off for an entire year! <br /><br />
+				This runs out on ${day}/${month}/${year}, when this happens you can either stick with ${favouriteBrandName} or select a whole new brand!
+			</p>
+			<a class="button" href="${getFavouriteBrandResponse.offers[0].categoryOffers[0].favouriteMasterBrand.brandUrl}">Shop ${favouriteBrandName}</a>
+		</div>
+        `;
+			var favouriteBrandContainer = document.querySelector('.favourite-brand-container');
+			favouriteBrandContainer.innerHTML = favouriteBrandContent;
+		} catch (error) {
+			console.log('User is not logged in or doesnt have a favourite brand set ' + error.message);
+			if (!xhrToken) {
+				console.log('user is not logged in');
+
+				favouriteBrandContent = `
+        <div class="visual">
+			// Trading - Favourite Brand Image
+			<img src="https://media.theperfumeshop.com/pws/client/images/website/2023/roi-homepage-redesign/generic-favourite-brand.jpg" alt="" />
+		</div>
+		<div class="content">
+			<h2>10% Off Your Favourite Brand</h2>
+			<p>
+				All our VIP Members get 10% off their Favourite Brand for an entire year. After that year finishes, you can select a new favourite, or stick with your old one. <br /><br />
+				It's free to sign up, so what are you waiting for?
+			</p>
+			<a class="button" href="/login#signup">Sign up</a>
+		</div>
+        `;
+
+				var favouriteBrandContainer = document.querySelector('.favourite-brand-container');
+				favouriteBrandContainer.innerHTML = favouriteBrandContent;
+			} else {
+				favouriteBrandContent = `
+        <div class="visual">
+			// Trading - Favourite Brand Image
+			<img src="https://media.theperfumeshop.com/pws/client/images/website/2023/roi-homepage-redesign/generic-favourite-brand.jpg" alt="" />
+		</div>
+		<div class="content">
+			<h2>10% Off Your Favourite Brand</h2>
+			<p>What are you waiting for? You haven’t selected your favourite brand yet. We have over 200 brands to choose from.</p>
+			<a class="button" href="/login#signup">Select your brand</a>
+		</div>
+        `;
+
+				var favouriteBrandContainer = document.querySelector('.favourite-brand-container');
+				favouriteBrandContainer.innerHTML = favouriteBrandContent;
+			}
+		}
+	}
+
+	window.getFavouriteBrand = getFavouriteBrand;
+
+	getFavouriteBrand();
+</script>

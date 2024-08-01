@@ -1,0 +1,158 @@
+<style>
+	.full-width-force {
+		width: 100% !important;
+		max-width: 1200px !important;
+		margin: auto !important;
+	}
+
+	section.spotlight-outer {
+		width: 100%;
+		max-width: 1200px;
+		padding: 0 10px;
+		margin: auto;
+	}
+
+	section.spotlight-outer .spotlight {
+		background: #ffffff;
+	}
+
+	section.spotlight-outer .spotlight .spotlight-container {
+		background: #f5f5f5;
+		border-radius: 4px;
+		max-width: 1200px;
+		margin: 20px auto;
+	}
+
+	section.spotlight-outer .spotlight .visual img {
+		display: block;
+		width: 100%;
+		border-radius: 4px 4px 0 0;
+	}
+
+	section.spotlight-outer .spotlight .content {
+		padding: 20px 20px 40px 20px;
+	}
+
+	@media only screen and (min-width: 768px) {
+		section.spotlight-outer {
+			padding: 0 10px;
+		}
+
+		section.spotlight-outer .spotlight {
+			padding: 0;
+		}
+
+		section.spotlight-outer .spotlight .spotlight-tile {
+			padding: 0;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		section.spotlight-outer .spotlight .content {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			padding: 20px;
+		}
+	}
+
+	section.spotlight-outer .spotlight h2 {
+		font-family: DIN Condensed Bold, 'DIN Condensed', sans-serif;
+		font-size: 32px;
+		text-transform: uppercase;
+		color: #000000;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+
+	section.spotlight-outer .spotlight p {
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		color: #000000;
+		text-align: center;
+		margin: 10px 0 0 0;
+		padding: 0;
+	}
+
+	section.spotlight-outer .spotlight a.button {
+		display: block;
+		background: #000000;
+		width: fit-content;
+		padding: 10px 50px;
+		margin: 20px auto 0 auto;
+		border-radius: 4px;
+		text-decoration: none;
+		color: #ffffff;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		text-transform: uppercase;
+		cursor: pointer;
+		border: solid 1px #000000;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.15s;
+	}
+
+	section.spotlight-outer .spotlight a.button:hover {
+		background: #f5f5f5;
+		color: #000000;
+		cursor: pointer;
+	}
+</style>
+
+<section class="spotlight-outer">
+	<div class="spotlight splide">
+		<div class="spotlight-container splide__track">
+			<div class="splide__list">
+				<div class="spotlight-tile splide__slide">
+					<div class="visual">
+						<!-- Trading -->
+						<img src="https://ifragranceofficial.com/wp-content/uploads/2023/12/daisy-pop-collection-1-e1702507361574.jpg" alt="" />
+					</div>
+					<div class="content">
+						<!-- Trading -->
+						<h2>Marc Jacobs</h2>
+						<p>Introducing Marc Jacobs Daisy Pop. Immerse yourself in the colourful world of Marc Jacobs with the brand’s most fashion-forward limited-edition olfactory creations to date.</p>
+						<a class="button" href="#">Shop now</a>
+					</div>
+				</div>
+				<div class="spotlight-tile splide__slide">
+					<div class="visual">
+						<!-- Trading -->
+						<img src="https://ifragranceofficial.com/wp-content/uploads/2023/12/daisy-pop-collection-1-e1702507361574.jpg" alt="" />
+					</div>
+					<div class="content">
+						<!-- Trading -->
+						<h2>Marc Jacobs</h2>
+						<p>Introducing Marc Jacobs Daisy Pop. Immerse yourself in the colourful world of Marc Jacobs with the brand’s most fashion-forward limited-edition olfactory creations to date.</p>
+						<a class="button" href="#">Shop now</a>
+					</div>
+				</div>
+				<div class="spotlight-tile splide__slide">
+					<div class="visual">
+						<!-- Trading -->
+						<img src="https://ifragranceofficial.com/wp-content/uploads/2023/12/daisy-pop-collection-1-e1702507361574.jpg" alt="" />
+					</div>
+					<div class="content">
+						<!-- Trading -->
+						<h2>Marc Jacobs</h2>
+						<p>Introducing Marc Jacobs Daisy Pop. Immerse yourself in the colourful world of Marc Jacobs with the brand’s most fashion-forward limited-edition olfactory creations to date.</p>
+						<a class="button" href="#">Shop now</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	document.querySelector('section.spotlight-outer').parentNode.parentNode.parentNode.classList.add('full-width-force');
+
+	new Splide('.splide.spotlight', {
+		arrows: (boolean = false),
+		rewind: (boolean = true),
+		rewindByDrag: (boolean = true),
+	}).mount();
+</script>

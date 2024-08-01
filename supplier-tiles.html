@@ -1,0 +1,130 @@
+<style>
+	.full-width-force {
+		width: 100% !important;
+		max-width: 1200px !important;
+		margin: auto !important;
+	}
+
+	section.supplier-tiles {
+		background: #ffffff;
+		padding: 0 10px;
+	}
+
+	section.supplier-tiles .supplier-tiles-container {
+		max-width: 1200px;
+		margin: 20px auto;
+		/* display: grid; */
+		/* grid-template-columns: 1fr 1fr; */
+		/* gap: 10px; */
+	}
+
+	@media only screen and (min-width: 768px) {
+		section.supplier-tiles .supplier-tiles-container {
+			/* grid-template-columns: 1fr 1fr 1fr 1fr; */
+		}
+
+		section.supplier-tiles .supplier-tiles-container a:hover span {
+			background: #ffffff;
+			color: #000000;
+		}
+	}
+
+	section.supplier-tiles .supplier-tiles-container a {
+		position: relative;
+	}
+
+	section.supplier-tiles .supplier-tiles-container a img {
+		width: 100%;
+		display: block;
+		border-radius: 4px;
+	}
+
+	section.supplier-tiles .supplier-tiles-container a span {
+		position: absolute;
+		background: #000000;
+		color: #ffffff;
+		text-align: center;
+		left: 5%;
+		width: 90%;
+		bottom: 10px;
+		box-sizing: border-box;
+		border-radius: 4px;
+		padding: 8px;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		text-transform: uppercase;
+		border: solid 1px #000000;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.15s;
+	}
+</style>
+
+<section class="supplier-tiles splide">
+	<div class="supplier-tiles-container splide__track">
+		<div class="splide__list">
+			<!-- Trading -->
+			<a class="splide__slide" href="#">
+				<img src="https://media.theperfumeshop.com/medias/sys_master/images/h40/h10/9144372101150/TPS_PYD_2023_Supplier_Tile_282x350/TPS-PYD-2023-Supplier-Tile-282x350.jpg" alt="" />
+				<span>Bestsellers</span>
+			</a>
+			<!-- Trading -->
+			<a class="splide__slide" href="#">
+				<img src="https://media.theperfumeshop.com/medias/sys_master/images/h92/h0f/9144372166686/TPSCatTileWithCopy22/TPSCatTileWithCopy22.jpg" alt="" />
+				<span>New</span>
+			</a>
+			<!-- Trading -->
+			<a class="splide__slide" href="#">
+				<img src="https://media.theperfumeshop.com/medias/sys_master/images/hd3/h0b/9144372297758/ADGPCategoryTile/ADGPCategoryTile.jpg" alt="" />
+				<span>Refillable</span>
+			</a>
+			<!-- Trading -->
+			<a class="splide__slide" href="#">
+				<img src="https://media.theperfumeshop.com/medias/sys_master/images/h2c/h1e/9145784139806/TPSTILE2/TPSTILE2.jpg" alt="" />
+				<span>Offers</span>
+			</a>
+			<!-- Trading -->
+			<a class="splide__slide" href="#">
+				<img src="https://media.theperfumeshop.com/medias/sys_master/images/h40/h10/9144372101150/TPS_PYD_2023_Supplier_Tile_282x350/TPS-PYD-2023-Supplier-Tile-282x350.jpg" alt="" />
+				<span>Bestsellers</span>
+			</a>
+			<!-- Trading -->
+			<a class="splide__slide" href="#">
+				<img src="https://media.theperfumeshop.com/medias/sys_master/images/h92/h0f/9144372166686/TPSCatTileWithCopy22/TPSCatTileWithCopy22.jpg" alt="" />
+				<span>New</span>
+			</a>
+			<!-- Trading -->
+			<a class="splide__slide" href="#">
+				<img src="https://media.theperfumeshop.com/medias/sys_master/images/hd3/h0b/9144372297758/ADGPCategoryTile/ADGPCategoryTile.jpg" alt="" />
+				<span>Refillable</span>
+			</a>
+			<!-- Trading -->
+			<a class="splide__slide" href="#">
+				<img src="https://media.theperfumeshop.com/medias/sys_master/images/h2c/h1e/9145784139806/TPSTILE2/TPSTILE2.jpg" alt="" />
+				<span>Offers</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<script>
+	document.querySelector('section.supplier-tiles').parentNode.parentNode.parentNode.classList.add('full-width-force');
+
+	new Splide('.splide.supplier-tiles', {
+		start: 2,
+		perMove: 1,
+		perPage: 4,
+		breakpoints: {
+			768: {
+				perPage: 2,
+			},
+		},
+		arrows: (boolean = false),
+		rewind: (boolean = true),
+		padding: '20px',
+		gap: '10px',
+		rewindByDrag: (boolean = true),
+		pagination: (boolean = false),
+		autoplay: true,
+	}).mount();
+</script>

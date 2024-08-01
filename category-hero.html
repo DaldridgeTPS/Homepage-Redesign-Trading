@@ -1,0 +1,123 @@
+<style>
+	.full-width-force {
+		width: 100% !important;
+		max-width: 1200px !important;
+		margin: auto !important;
+	}
+
+	section.category-hero {
+		background: #ffffff;
+		padding: 0 10px;
+	}
+
+	section.category-hero .category-hero-container {
+		max-width: 1200px;
+		margin: 20px auto;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	section.category-hero .category-hero-container picture {
+		width: 100%;
+		border-radius: 4px;
+	}
+
+	section.category-hero .category-hero-container picture img {
+		width: 100%;
+		border-radius: 4px;
+	}
+
+	section.category-hero .category-hero-container .splide__pagination {
+		right: 0 !important;
+		left: initial !important;
+		display: flex !important;
+	}
+
+	section.category-hero .category-hero-container h2 {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		margin: 0;
+		background: #ffffff;
+		color: #000000;
+		width: fit-content;
+		box-sizing: border-box;
+		border-radius: 0 4px 0 0;
+		padding: 15px 30px 6px 40px;
+		font-family: DIN Condensed, DIN Condensed Bold, system-ui;
+		font-size: 32px;
+		text-transform: uppercase;
+		z-index: 2;
+	}
+</style>
+
+<section class="category-hero">
+	<div class="category-hero-container splide">
+		<h2>Womens</h2>
+		<div class="splide__track">
+			<div class="splide__list">
+				<a class="splide__slide" href="">
+					<picture>
+						<!-- Trading - Desktop Image -->
+						<source
+							srcset="https://media.theperfumeshop.com/medias/sys_master/images/h7e/h0f/8844342132766/Code-Parfum-1200x320-TPS-homepage-brandroom-desktop/Code-Parfum-1200x320-TPS-homepage-brandroom-desktop.jpg"
+							media="(min-width: 1023px)"
+						/>
+						<!-- Trading - Tablet Image -->
+						<source
+							srcset="https://media.theperfumeshop.com/medias/sys_master/images/hc4/h0c/8844342099998/Code-Parfum-1023x320-TPS-homepage-brandroom-tablet/Code-Parfum-1023x320-TPS-homepage-brandroom-tablet.jpg"
+							media="(min-width: 768px)"
+						/>
+						<!-- Trading - Mobile Image -->
+						<img src="https://media.theperfumeshop.com/medias/sys_master/images/h83/h55/8886045409310/25840-Giorgio-Armani-Code-Parfum-TPS-400x466/25840-Giorgio-Armani-Code-Parfum-TPS-400x466.jpg" alt="MDN" />
+					</picture>
+				</a>
+				<a class="splide__slide" href="">
+					<picture>
+						<!-- Trading - Desktop Image -->
+						<source
+							srcset="https://media.theperfumeshop.com/medias/sys_master/images/h7e/h0f/8844342132766/Code-Parfum-1200x320-TPS-homepage-brandroom-desktop/Code-Parfum-1200x320-TPS-homepage-brandroom-desktop.jpg"
+							media="(min-width: 1023px)"
+						/>
+						<!-- Trading - Tablet Image -->
+						<source
+							srcset="https://media.theperfumeshop.com/medias/sys_master/images/hc4/h0c/8844342099998/Code-Parfum-1023x320-TPS-homepage-brandroom-tablet/Code-Parfum-1023x320-TPS-homepage-brandroom-tablet.jpg"
+							media="(min-width: 768px)"
+						/>
+						<!-- Trading - Mobile Image -->
+						<img src="https://media.theperfumeshop.com/medias/sys_master/images/h83/h55/8886045409310/25840-Giorgio-Armani-Code-Parfum-TPS-400x466/25840-Giorgio-Armani-Code-Parfum-TPS-400x466.jpg" alt="MDN" />
+					</picture>
+				</a>
+				<a class="splide__slide" href="">
+					<picture>
+						<!-- Trading - Desktop Image -->
+						<source
+							srcset="https://media.theperfumeshop.com/medias/sys_master/images/h7e/h0f/8844342132766/Code-Parfum-1200x320-TPS-homepage-brandroom-desktop/Code-Parfum-1200x320-TPS-homepage-brandroom-desktop.jpg"
+							media="(min-width: 1023px)"
+						/>
+						<!-- Trading - Tablet Image -->
+						<source
+							srcset="https://media.theperfumeshop.com/medias/sys_master/images/hc4/h0c/8844342099998/Code-Parfum-1023x320-TPS-homepage-brandroom-tablet/Code-Parfum-1023x320-TPS-homepage-brandroom-tablet.jpg"
+							media="(min-width: 768px)"
+						/>
+						<!-- Trading - Mobile Image -->
+						<img src="https://media.theperfumeshop.com/medias/sys_master/images/h83/h55/8886045409310/25840-Giorgio-Armani-Code-Parfum-TPS-400x466/25840-Giorgio-Armani-Code-Parfum-TPS-400x466.jpg" alt="MDN" />
+					</picture>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	document.querySelector('section.category-hero').parentNode.parentNode.parentNode.classList.add('full-width-force');
+
+	new Splide('.splide.category-hero-container', {
+		arrows: (boolean = false),
+		rewind: (boolean = true),
+		rewindByDrag: (boolean = true),
+	}).mount();
+</script>

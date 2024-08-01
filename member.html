@@ -1,0 +1,318 @@
+<style>
+	.full-width-force {
+		width: 100% !important;
+		max-width: 1200px !important;
+		margin: auto !important;
+	}
+
+	section.member {
+		background: #ffffff;
+		padding: 0 10px;
+	}
+
+	section.member .member-container {
+		background: #e00034;
+		border-radius: 4px;
+		max-width: 1200px;
+		margin: 20px auto;
+	}
+
+	section.member .content {
+		padding: 20px;
+	}
+
+	@media only screen and (min-width: 768px) {
+		section.member .member-container {
+			padding: 0;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		section.member .visual {
+			background: #f5f5f5;
+			background-image: url('https://media.theperfumeshop.com/pws/client/images/website/2023/roi-homepage-redesign/woman-with-card.png');
+			background-size: cover;
+			background-position: 0px -20px;
+		}
+	}
+
+	section.member h2 {
+		font-family: DIN Condensed Bold, 'DIN Condensed', sans-serif;
+		font-size: 32px;
+		text-transform: uppercase;
+		color: #ffffff;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+
+	section.member p {
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		color: #ffffff;
+		text-align: center;
+		margin: 10px 0 0 0;
+		padding: 0;
+	}
+
+	section.member a.button {
+		display: block;
+		background: #ffffff;
+		width: fit-content;
+		padding: 10px 50px;
+		margin: 20px auto 0 auto;
+		border-radius: 4px;
+		text-decoration: none;
+		color: #000000;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		text-transform: uppercase;
+		cursor: pointer;
+		border: solid 1px #ffffff;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.15s;
+	}
+
+	section.member a.button:hover {
+		background: #e00034;
+		color: #ffffff;
+		cursor: pointer;
+	}
+
+	section.member a.sub-link {
+		display: block;
+		text-align: center;
+		margin: 20px auto 0 auto;
+		text-decoration: underline;
+		color: #ffffff;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 14px;
+		font-weight: bold;
+		cursor: pointer;
+	}
+
+	section.member .progress-container {
+		width: 100%;
+		background-color: #ffffff;
+		position: relative;
+		height: 10px;
+		border-radius: 15px;
+		margin: 25px auto 0 auto;
+		padding: 2px;
+		box-sizing: border-box;
+	}
+
+	section.member .custom-progress-bar {
+		height: 100%;
+		background-color: #e00034;
+		width: 0%; /* Initial state, will be updated by JS */
+		border-radius: 15px;
+		transition: width 0.4s ease;
+	}
+
+	section.member .levels {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		top: -15px;
+	}
+
+	section.member .level {
+		width: 20px;
+		height: 20px;
+		background-color: #fff;
+		color: #000000;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		font-family: Muli, arial, helvetica, sans-serif;
+		font-size: 10px;
+		font-weight: bold;
+	}
+</style>
+
+<section class="member">
+	<div class="member-container"></div>
+</section>
+
+<script>
+	document.querySelector('section.member').parentNode.parentNode.parentNode.classList.add('full-width-force');
+
+	async function getUser() {
+		// Define the Variables
+		var xhrLang = localStorage.getItem('spartacus⚿⚿language');
+		var xhrCurrency = localStorage.getItem('spartacus⚿⚿currency');
+		var auth = localStorage.getItem('spartacus⚿⚿auth');
+
+		// Check if the user is logged in
+		if (!auth) {
+			displayNotLoggedInContent();
+			return;
+		}
+
+		xhrLang = xhrLang ? xhrLang.replace(/["]+/g, '') : 'en';
+		xhrCurrency = xhrCurrency ? xhrCurrency.replace(/["]+/g, '') : 'EUR';
+
+		var authObj = JSON.parse(auth);
+		var xhrToken = authObj && authObj.token ? authObj.token.access_token : null;
+
+		if (!xhrToken) {
+			displayNotLoggedInContent();
+			return;
+		}
+
+		// Define the URL
+		var apiUrl = 'https://api.cmb8j9fjhz-emea3aswa1-s1-public.model-t.cc.commerce.ondemand.com/api/v2/';
+
+		// Derive the channel
+		var xhrChannel = xhrCurrency === 'GBP' ? 'tpsgb' : 'tpsie';
+
+		// Build URL
+		var xhrUserUrl = `${apiUrl}${xhrChannel}/users/current?lang=${xhrLang}&curr=${xhrCurrency}`;
+
+		// Define the headers
+		var headers = new Headers();
+		headers.append('Authorization', `Bearer ${xhrToken}`);
+
+		// Define the request
+		var request = new Request(xhrUserUrl, {
+			method: 'GET',
+			headers: headers,
+		});
+
+		try {
+			var response = await fetch(request);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			var userResponse = await response.json();
+			if (userResponse.loyaltyInformation.pointsBalance == 0) {
+				memberContent = `
+            <div class="content">
+                <h2>Welcome Back ${userResponse.firstName}</h2>
+                <p>As a VIP Reward Member you get <b>Free Delivery</b> on all your orders. Receive <b>Free Samples</b> in all your deliveries. Get <b>10% Off your Favourite Brand</b> and we even give you a discount to celebrate your Birthday!</p>
+                <div class="progress-container">
+                    <div class="custom-progress-bar" id="custom-progress-bar"></div>
+                </div>
+                <div class="levels">
+                    <div class="level" data-level="0">0</div>
+                    <div class="level" data-level="1">1</div>
+                    <div class="level" data-level="2">2</div>
+                    <div class="level" data-level="3">3</div>
+                </div>
+                <p>You're currently a <b>Level 0 VIP</b>, get spending to earn free gifts. What are you waiting for?</p>
+                <a class="button" href="/offers/all-offers/fragrance-offers/c/W30050">Shop offers</a>
+            </div>
+            <div class="visual"></div>
+            `;
+
+				var memberContainer = document.querySelector('.member-container');
+				if (memberContainer) {
+					memberContainer.innerHTML = memberContent;
+				}
+
+				updateProgressBar(userResponse.loyaltyInformation.pointsBalance);
+			}
+			if (userResponse.loyaltyInformation.pointsBalance > 0 && userResponse.loyaltyInformation.pointsBalance < 100) {
+				memberContent = `
+            <div class="content">
+                <h2>Welcome Back ${userResponse.firstName}</h2>
+                <p>As a VIP Reward Member you get <b>Free Delivery</b> on all your orders. Receive <b>Free Samples</b> in all your deliveries. Get <b>10% Off your Favourite Brand</b> and we even give you a discount to celebrate your Birthday!</p>
+                <div class="progress-container">
+                    <div class="custom-progress-bar" id="custom-progress-bar"></div>
+                </div>
+                <div class="levels">
+                    <div class="level" data-level="0">0</div>
+                    <div class="level" data-level="1">1</div>
+                    <div class="level" data-level="2">2</div>
+                    <div class="level" data-level="3">3</div>
+                </div>
+                <p>You're currently a <b>Level 0 VIP</b>, which means you're on your way to having <b>Free Gifts to Claim</b>. What are you waiting for?</p>
+                <a class="button" href="/offers/all-offers/fragrance-offers/c/W30050">Shop offers</a>
+            </div>
+            <div class="visual"></div>
+            `;
+
+				var memberContainer = document.querySelector('.member-container');
+				if (memberContainer) {
+					memberContainer.innerHTML = memberContent;
+				}
+
+				updateProgressBar(userResponse.loyaltyInformation.pointsBalance);
+			}
+			if (userResponse.loyaltyInformation.pointsBalance > 99) {
+				if (userResponse.loyaltyInformation.pointsBalance > 99 && userResponse.loyaltyInformation.pointsBalance < 200) {
+					var memberLevel = 1;
+				}
+				if (userResponse.loyaltyInformation.pointsBalance > 199 && userResponse.loyaltyInformation.pointsBalance < 300) {
+					var memberLevel = 2;
+				}
+				if (userResponse.loyaltyInformation.pointsBalance > 299) {
+					var memberLevel = 3;
+				}
+				memberContent = `
+            <div class="content">
+                <h2>Welcome Back ${userResponse.firstName}</h2>
+                <p>As a VIP Reward Member you get <b>Free Delivery</b> on all your orders. Receive <b>Free Samples</b> in all your deliveries. Get <b>10% Off your Favourite Brand</b> and we even give you a discount to celebrate your Birthday!</p>
+                <div class="progress-container">
+                    <div class="custom-progress-bar" id="custom-progress-bar"></div>
+                </div>
+                <div class="levels">
+                    <div class="level" data-level="0">0</div>
+                    <div class="level" data-level="1">1</div>
+                    <div class="level" data-level="2">2</div>
+                    <div class="level" data-level="3">3</div>
+                </div>
+                <p>You're currently a <b>Level ${memberLevel} VIP</b>, which means you have <b>Free Gifts to Claim</b>. What are you waiting for?</p>
+                <a class="button" href="/my-account/my-rewards">Claim now</a>
+            </div>
+            <div class="visual"></div>
+            `;
+
+				var memberContainer = document.querySelector('.member-container');
+				if (memberContainer) {
+					memberContainer.innerHTML = memberContent;
+				}
+
+				updateProgressBar(userResponse.loyaltyInformation.pointsBalance);
+			}
+		} catch (error) {
+			console.log('Error fetching user data: ' + error.message);
+			displayNotLoggedInContent();
+		}
+	}
+
+	function updateProgressBar(points) {
+		const progressBar = document.getElementById('custom-progress-bar');
+		let widthPercentage = 0;
+		if (points >= 300) {
+			widthPercentage = 100;
+		} else {
+			widthPercentage = (points / 300) * 100;
+		}
+		progressBar.style.width = `${widthPercentage}%`;
+	}
+
+	function displayNotLoggedInContent() {
+		memberContent = `
+    <div class="content">
+        <h2>Become a VIP</h2>
+        <p>Keep updated about new launches, fragrance tips and news, as well as receiving free delivery, exclusive offers and discounts on your favourite brands.</p>
+        <a class="button" href="/login#signup">Sign up</a>
+        <a class="sub-link" href="/login">Already a VIP? Log in</a>
+    </div>
+    <div class="visual"></div>
+    `;
+
+		var memberContainer = document.querySelector('.member-container');
+		if (memberContainer) {
+			memberContainer.innerHTML = memberContent;
+		}
+	}
+
+	window.getUser = getUser;
+
+	getUser();
+</script>
